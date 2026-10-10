@@ -1,0 +1,168 @@
+{
+  "method": "local contrast normalization + multiscale LBP + bidirectional neighboring-region matching",
+  "radii": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "selected": {
+    "sigma": 5.0,
+    "penalty": 0.02,
+    "alpha": 0.5
+  },
+  "candidates": [
+    {
+      "sigma": 5.0,
+      "penalty": 0.02,
+      "alpha": 0.0
+    },
+    {
+      "sigma": 5.0,
+      "penalty": 0.02,
+      "alpha": 0.25
+    },
+    {
+      "sigma": 5.0,
+      "penalty": 0.02,
+      "alpha": 0.5
+    },
+    {
+      "sigma": 5.0,
+      "penalty": 0.02,
+      "alpha": 0.75
+    },
+    {
+      "sigma": 5.0,
+      "penalty": 0.02,
+      "alpha": 1.0
+    },
+    {
+      "sigma": 5.0,
+      "penalty": 0.05,
+      "alpha": 0.0
+    },
+    {
+      "sigma": 5.0,
+      "penalty": 0.05,
+      "alpha": 0.25
+    },
+    {
+      "sigma": 5.0,
+      "penalty": 0.05,
+      "alpha": 0.5
+    },
+    {
+      "sigma": 5.0,
+      "penalty": 0.05,
+      "alpha": 0.75
+    },
+    {
+      "sigma": 5.0,
+      "penalty": 0.05,
+      "alpha": 1.0
+    },
+    {
+      "sigma": 5.0,
+      "penalty": 0.1,
+      "alpha": 0.0
+    },
+    {
+      "sigma": 5.0,
+      "penalty": 0.1,
+      "alpha": 0.25
+    },
+    {
+      "sigma": 5.0,
+      "penalty": 0.1,
+      "alpha": 0.5
+    },
+    {
+      "sigma": 5.0,
+      "penalty": 0.1,
+      "alpha": 0.75
+    },
+    {
+      "sigma": 5.0,
+      "penalty": 0.1,
+      "alpha": 1.0
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.02,
+      "alpha": 0.0
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.02,
+      "alpha": 0.25
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.02,
+      "alpha": 0.5
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.02,
+      "alpha": 0.75
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.02,
+      "alpha": 1.0
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.05,
+      "alpha": 0.0
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.05,
+      "alpha": 0.25
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.05,
+      "alpha": 0.5
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.05,
+      "alpha": 0.75
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.05,
+      "alpha": 1.0
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.1,
+      "alpha": 0.0
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.1,
+      "alpha": 0.25
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.1,
+      "alpha": 0.5
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.1,
+      "alpha": 0.75
+    },
+    {
+      "sigma": 10.0,
+      "penalty": 0.1,
+      "alpha": 1.0
+    }
+  ],
+  "dataset_fingerprint": "9972801133ec8ba8b06221a0f2c7c087c2e2a8d99a5fdd0ddfbf90beb82d5ac3",
+  "selection": "preserve validation normal and uniform brightness; maximize mean remaining seven conditions; ties choose earliest candidate",
+  "limitations": "Earlier methods already inspected test data; this is exploratory, not an untouched holdout."
+}
