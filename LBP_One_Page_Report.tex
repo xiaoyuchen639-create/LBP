@@ -1,0 +1,88 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=14mm]{geometry}
+\usepackage{booktabs,array}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{1.0}
+\begin{document}
+{\centering\Large\bfseries Improving LBP Face Recognition Robustness\par}
+\vspace{4pt}
+\textbf{Protocol.} ORL: 40 subjects, 10 images each ($92\times112$ pixels). Images 1--5 form the gallery; 6--10 form the 200-image test set. Baseline: uniform LBP (16 neighbors, radius 2), nine regions, 2187 features, chi-square matching. A separate 100-random-split run achieved 98.26\% mean accuracy (SD 0.96 percentage points).
+
+\textbf{Conditions.} Only probes are changed: brightness $0.5I+20$; side lighting $I[1+s\,\mathrm{linspace}(-1,1,W)]$, clipped to $[0,255]$; rotations retain dimensions with bilinear interpolation and nearest boundary handling. All accuracies below are percentages.
+
+\begin{minipage}{\linewidth}
+\centering
+\textbf{Table 1. Original baseline}\par\vspace{2pt}
+{\fontsize{9}{10.5}\selectfont
+\begin{tabular}{@{}lr@{}}
+\toprule
+Condition & Accuracy (\%)\\
+\midrule
+Normal & 97.5\\
+Uniform brightness & 97.5\\
+Lighting $s=0.2$ & 96.0\\
+Lighting $s=0.4$ & 94.5\\
+Lighting $s=0.6$ & 89.5\\
+Lighting $s=0.8$ & 70.5\\
+Rotation $5^\circ$ & 97.0\\
+Rotation $10^\circ$ & 92.5\\
+Rotation $20^\circ$ & 63.0\\
+\bottomrule
+\end{tabular}}
+\end{minipage}
+\par\vspace{3pt}
+\textbf{Initial methods.} Light: $\log(1+I)$ minus its Gaussian local mean ($\sigma=5$). Rotation: search $-20^\circ$ to $20^\circ$ in $5^\circ$ steps. Combined: rotation search on normalized features only. Its normal accuracy drops to 96.5\%, motivating fusion.
+
+\begin{minipage}{\linewidth}
+\centering
+\textbf{Table 2. Initial enhancement comparison}\par\vspace{2pt}
+{\fontsize{9}{10.5}\selectfont
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Condition & Baseline & Light & Rotation & Combined\\
+\midrule
+Normal & 97.5 & 96.0 & 97.5 & 96.5\\
+Uniform brightness & 97.5 & 96.0 & 97.5 & 95.5\\
+Lighting $s=0.2$ & 96.0 & 96.0 & 96.0 & 96.5\\
+Lighting $s=0.4$ & 94.5 & 96.0 & 94.5 & 96.5\\
+Lighting $s=0.6$ & 89.5 & 95.5 & 89.5 & 96.0\\
+Lighting $s=0.8$ & 70.5 & 96.5 & 70.0 & 96.5\\
+Rotation $5^\circ$ & 97.0 & 95.0 & 97.0 & 95.5\\
+Rotation $10^\circ$ & 92.5 & 91.0 & 94.0 & 91.5\\
+Rotation $20^\circ$ & 63.0 & 68.5 & 87.0 & 79.5\\
+\bottomrule
+\end{tabular}}
+\end{minipage}
+\par\vspace{3pt}
+\textbf{Final method.} Fuse $D=(1-w)D_{\mathrm{raw}}+wD_{\mathrm{light}}$ at each angle, then minimize over angles. Select $w$ using images 1--4 as gallery and image 5 as validation: test 21 weights from 0 to 1; preserve normal/brightness accuracy, then maximize mean accuracy on the other seven conditions. Selected $w=0.50$ is fixed for final testing.
+
+\begin{minipage}{\linewidth}
+\centering
+\textbf{Table 3. Final fusion results}\par\vspace{2pt}
+{\fontsize{9}{10.5}\selectfont
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Condition & Baseline & Fusion & Gain (pp)\\
+\midrule
+Normal & 97.5 & 98.0 & +0.5\\
+Uniform brightness & 97.5 & 98.0 & +0.5\\
+Lighting $s=0.2$ & 96.0 & 97.0 & +1.0\\
+Lighting $s=0.4$ & 94.5 & 96.5 & +2.0\\
+Lighting $s=0.6$ & 89.5 & 97.5 & +8.0\\
+Lighting $s=0.8$ & 70.5 & 95.0 & +24.5\\
+Rotation $5^\circ$ & 97.0 & 97.0 & 0.0\\
+Rotation $10^\circ$ & 92.5 & 96.0 & +3.5\\
+Rotation $20^\circ$ & 63.0 & 88.0 & +25.0\\
+\bottomrule
+\end{tabular}}
+\end{minipage}
+\par\vspace{3pt}
+\textbf{Conclusion.} Normal accuracy is preserved (98.0\%); strong lighting improves by 24.5 percentage points and $20^\circ$ rotation by 25.0. No tested condition falls below baseline. ``pp'' means percentage points.
+
+\textbf{Limitations.} Angle search adds computation. Test results were viewed during earlier exploration; this is not an untouched holdout. Statistical significance and generalization to new data remain unverified.
+\end{document}
