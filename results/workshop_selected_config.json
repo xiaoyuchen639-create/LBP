@@ -1,0 +1,18 @@
+{
+  "weight": 0.5,
+  "sigma": 5.0,
+  "angles": [
+    -20,
+    -15,
+    -10,
+    -5,
+    0,
+    5,
+    10,
+    15,
+    20
+  ],
+  "dataset_fingerprint": "9972801133ec8ba8b06221a0f2c7c087c2e2a8d99a5fdd0ddfbf90beb82d5ac3",
+  "selection": "images 1-4 gallery, image 5 validation; preserve normal and uniform brightness, maximize mean other conditions",
+  "limitation": "test results were already inspected during earlier exploratory experiments; not a fully untouched holdout"
+}
